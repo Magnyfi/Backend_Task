@@ -1,0 +1,21 @@
+{% extends "store/base.html" %}
+{% block content %}
+    {% for Item in Items %}
+    
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+             <h2><a class="article-title" href="#">{{ Item.Name }}</a></h2>
+              <small class="text-muted">{{ Item.category }}</small>
+            </div>
+            
+            <p class="article-content">Description: {{ Item.Description }}</p>
+            <p class="article-content">Price: ₹{{ Item.Price }}</p>
+            <p class="article-content">Available stock: {{ Item.Stock }}{{ Item.unit }}</p>
+            <small class="text_muted">Last Updated: {{ Item.Last_updated}}</small>
+            <a class = "text-muted" href="{% url 'add-to-cart' Item.id %}">Add to Cart</a>
+          </div>
+        </article>
+    
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends "store/base.html" %}
+{% block content %}
+    <h2>{{user.username}}'s cart</h2>
+    {% for cartitem in cartitems %}
+    <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+             <h2><a class="article-title" href="#">{{ cartitem.item.Name }}</a></h2>
+              <small class="text-muted">{{ cartitem.item.category }}</small>
+            </div>
+            
+            <p class="article-content">Description: {{ cartitem.item.Description }}</p>
+            <p class="article-content">Price: ₹{{ cartitem.item.Price }}</p>
+            <p class="article-content">Available stock: {{ cartitem.item.Stock }}{{ cartitem.item.unit }}</p>
+            <small class="text_muted">Last Updated: {{ cartitem.item.Last_updated}}</small>
+            <p class="text-muted"><a class = "text-muted" href="{% url 'add-to-cart' cartitem.item.id %}">+</a> {{cartitem.quantity}} 
+                <a class = "text-muted" href="{% url 'sub-from-cart' cartitem.item.id %}">-</a></p>
+          </div>
+        </article>
+        {% endfor %}
+{% endblock content %}
