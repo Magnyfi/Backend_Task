@@ -18,13 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from users import views as user_views
+from wallet import views as wallet_views
+from cart import views as cart_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/',user_views.register, name = 'register'),
-    path('add-to-cart/<int:item_id>/',user_views.add_to_cart, name='add-to-cart'),
-    path('sub-from-cart/<int:item_id>/',user_views.sub_from_cart, name='sub-from-cart'),
-    path('cart/',user_views.cart, name = 'store-cart'),
+    path('add-to-cart/<int:item_id>/',cart_views.add_to_cart, name='add-to-cart'),
+    path('sub-from-cart/<int:item_id>/',cart_views.sub_from_cart, name='sub-from-cart'),
+    path('cart/',cart_views.cart, name = 'store-cart'),
+    path('wallet/',wallet_views.wallet_home, name = 'wallet-home'),
     path('login/',auth_views.LoginView.as_view(template_name = 'users/login.html'), name = 'login'),
     path('logout/',auth_views.LogoutView.as_view(template_name = 'users/logout.html'), name = 'logout'),
     path('',include('store.urls')),

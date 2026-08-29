@@ -1,0 +1,34 @@
+{% extends "store/base.html" %}
+{% block content %}
+
+    <h2>{{user.username}}'s wallet</h2>
+    <p>Balance = {{user_wallet.currency}} {{user_wallet.balance}}</p>
+<!--
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+-->
+    <form method="POST" class="my-4">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="id_amount" class="form-label">Add Funds</label>
+      {{ form.amount }}
+    </div>
+    <button type="submit" class="btn btn-primary">Add Money</button>
+  </form>
+
+    {% for transaction in transactions %}
+
+    <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+             <small class="text-muted">{{ transaction.time }}</small>
+            </div>
+            <p class="text-muted">Amount Added: {{ transaction.amount }}</p>
+            <small class="text-muted">Transaction Status: {{ transaction.status }}</small>
+          </div>
+        </article>
+    {% endfor %}
+{% endblock content %}

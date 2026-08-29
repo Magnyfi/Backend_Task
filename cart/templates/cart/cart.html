@@ -1,7 +1,16 @@
 {% extends "store/base.html" %}
 {% block content %}
     <h2>{{user.username}}'s cart</h2>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
     {% for cartitem in cartitems %}
+
+
     <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
@@ -10,7 +19,7 @@
             </div>
             
             <p class="article-content">Description: {{ cartitem.item.Description }}</p>
-            <p class="article-content">Price: ₹{{ cartitem.item.Price }}</p>
+            <p class="article-content">Price: ₹{{ cartitem.total_price }}</p>
             <p class="article-content">Available stock: {{ cartitem.item.Stock }}{{ cartitem.item.unit }}</p>
             <small class="text_muted">Last Updated: {{ cartitem.item.Last_updated}}</small>
             <p class="text-muted"><a class = "text-muted" href="{% url 'add-to-cart' cartitem.item.id %}">+</a> {{cartitem.quantity}} 
@@ -18,4 +27,6 @@
           </div>
         </article>
         {% endfor %}
+
+    <h2>Cart Total : {{cart.total_price}}</h2>
 {% endblock content %}

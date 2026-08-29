@@ -35,7 +35,7 @@
             <div class="navbar-nav">
               {% if user.is_authenticated %}
                 <a class="nav-item nav-link" href="#">{{user.username}}</a>
-                <a class="nav-item nav-link" href="#">Wallet</a>
+                <a class="nav-item nav-link" href="{% url 'wallet-home'%}">Wallet</a>
                 <a class="nav-item nav-link" href="{% url 'store-cart' %}">Cart</a>
                 <form action="{% url 'logout' %}" method="post" class="d-inline">
                             {% csrf_token %}

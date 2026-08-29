@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'wallet.apps.WalletConfig'
+    'cart.apps.CartConfig',
+    'wallet.apps.WalletConfig',
     'store.apps.StoreConfig',
     'users.apps.UsersConfig',
     'django.contrib.admin',
